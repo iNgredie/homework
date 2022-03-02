@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -7,17 +7,16 @@ from ..schemas import User
 
 
 class BlogBase(BaseModel):
-    id: int
     title: str
-    description: str
+    description: Optional[str] = None
     created_at: datetime
     updated_at: datetime
-    authors: List[User]
-    owner: User
+    authors: List[User] = []
 
 
 class Blog(BlogBase):
     id: int
+    owner: int
 
     class Config:
         orm_mode = True

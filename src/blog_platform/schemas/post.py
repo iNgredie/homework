@@ -6,7 +6,6 @@ from ..schemas import User
 
 
 class PostBase(BaseModel):
-    id: int
     author: User
     title: str
     body: str

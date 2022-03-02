@@ -6,7 +6,6 @@ from ..schemas import User
 
 
 class CommentBase(BaseModel):
-    id: int
     author: User
     body: str
     created_at: datetime
