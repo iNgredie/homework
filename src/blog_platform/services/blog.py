@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -20,6 +22,9 @@ class BlogService:
 
     def get(self, user_id: int, blog_id: int) -> models.Blog:
         return self._get(user_id, blog_id)
+
+    def get_list(self) -> List[models.Blog]:
+        return self.session.query(models.Blog).all()
 
     def create(self, user_id: int, blog_data: schemas.BlogCreate) -> models.Blog:
         blog = models.Blog(**blog_data.dict(), owner=user_id)

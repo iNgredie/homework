@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -20,6 +22,9 @@ class PostService:
 
     def get(self, user_id: int, post_id: int) -> models.Post:
         return self._get(user_id, post_id)
+
+    def get_list(self) -> List[models.Post]:
+        return self.session.query(models.Post).all()
 
     def create(self, user_id: int, post_data: schemas.PostCreate) -> models.Post:
         post = models.Post(**post_data.dict(), author=user_id)
