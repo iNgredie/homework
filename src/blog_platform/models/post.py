@@ -7,7 +7,7 @@ from ..db.base_class import Base
 
 class Post(Base):
     id = Column(Integer, primary_key=True, index=True)
-    author = Column(
+    author_id = Column(
         Integer, ForeignKey('user.id', name='fk_post_user_id', ondelete='CASCADE')
     )
     title = Column(String(length=255))

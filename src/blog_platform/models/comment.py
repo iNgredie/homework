@@ -7,7 +7,7 @@ from ..db.base_class import Base
 
 class Comment(Base):
     id = Column(Integer, primary_key=True, index=True)
-    author = Column(
+    author_id = Column(
         Integer, ForeignKey('user.id', name='fk_comment_user_id', ondelete='CASCADE')
     )
     body = Column(Text, nullable=True)

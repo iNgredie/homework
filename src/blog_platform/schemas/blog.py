@@ -16,7 +16,7 @@ class BlogBase(BaseModel):
 
 class Blog(BlogBase):
     id: int
-    owner: int
+    owner_id: int
 
     class Config:
         orm_mode = True

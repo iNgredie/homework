@@ -15,7 +15,7 @@ class Blog(Base):
         DateTime(timezone=True), onupdate=datetime.utcnow, default=datetime.utcnow
     )
     authors = relationship('UserBlog', backref='blog')
-    owner = Column(
+    owner_id = Column(
         Integer, ForeignKey('user.id', name='fk_blog_user_id', ondelete='CASCADE')
     )
 

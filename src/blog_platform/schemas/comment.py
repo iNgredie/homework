@@ -2,17 +2,15 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from ..schemas import User
-
 
 class CommentBase(BaseModel):
-    author: User
     body: str
     created_at: datetime
 
 
 class Comment(CommentBase):
     id: int
+    author_id: int
 
     class Config:
         orm_mode = True

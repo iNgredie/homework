@@ -13,7 +13,7 @@ class PostBase(BaseModel):
 
 class Post(PostBase):
     id: int
-    author: int
+    author_id: int
 
     class Config:
         orm_mode = True
