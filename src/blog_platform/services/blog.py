@@ -22,7 +22,7 @@ class BlogService:
         return self._get(user_id, blog_id)
 
     def create(self, user_id: int, blog_data: schemas.BlogCreate) -> models.Blog:
-        blog = models.Blog(**blog_data.dict(), owner_id=user_id)
+        blog = models.Blog(**blog_data.dict(), owner=user_id)
         self.session.add(blog)
         self.session.commit()
         self.session.refresh(blog)

@@ -2,11 +2,8 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from ..schemas import User
-
 
 class PostBase(BaseModel):
-    author: User
     title: str
     body: str
     created_at: datetime
@@ -16,6 +13,7 @@ class PostBase(BaseModel):
 
 class Post(PostBase):
     id: int
+    author: int
 
     class Config:
         orm_mode = True
