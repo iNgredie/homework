@@ -3,7 +3,11 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
-from ..schemas import User
+
+class UserBlog(BaseModel):
+    id: int
+    user_id: int
+    blog_id: int
 
 
 class BlogBase(BaseModel):
@@ -11,7 +15,7 @@ class BlogBase(BaseModel):
     description: Optional[str] = None
     created_at: datetime
     updated_at: datetime
-    authors: List[User] = []
+    authors: List[UserBlog] = []
 
 
 class Blog(BlogBase):
@@ -28,9 +32,3 @@ class BlogCreate(BlogBase):
 
 class BlogUpdate(BlogBase):
     pass
-
-
-class UserBlog(BaseModel):
-    id: int
-    user_id: User
-    blog_id: Blog

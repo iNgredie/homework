@@ -1,4 +1,7 @@
 from fastapi import APIRouter
 
+from .blog import router as blog_router
+
 
 router = APIRouter()
+router.include_router(blog_router)
