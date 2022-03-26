@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter, Depends
 
 from ..schemas import Blog, BlogCreate, User
@@ -35,3 +37,12 @@ def delete_blog(
     service: BlogService = Depends(),
 ):
     return service.delete(user_id=user.id, blog_id=blog_id)
+
+
+@router.get('/blogs', response_model=Blog)
+def get_blog_list(
+    amount: Optional[int] = None,
+    user: User = Depends(get_current_user),
+    service: BlogService = Depends(),
+):
+    return service.get_list(user_id=user.id, amount=amount)

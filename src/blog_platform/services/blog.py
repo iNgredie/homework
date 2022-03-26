@@ -23,8 +23,16 @@ class BlogService:
     def get(self, user_id: int, blog_id: int) -> models.Blog:
         return self._get(user_id, blog_id)
 
-    def get_list(self) -> List[models.Blog]:
-        return self.session.query(models.Blog).all()
+    def get_list(self, user_id: int, amount: int) -> List[models.Blog]:
+        query = (
+            self.session
+            .query(models.Blog)
+            .filter_by(user_id=user_id)
+            .order_by('-id')
+        )
+        if amount:
+            query = query[:amount + 1]
+        return query
 
     def create(self, user_id: int, blog_data: schemas.BlogCreate) -> models.Blog:
         blog = models.Blog(**blog_data.dict(), owner=user_id)
